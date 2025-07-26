@@ -1,1 +1,4 @@
-node_modules/\n.env\napi-key.txt
+node_modules/
+.env
+api-key.txt
+api/completions.php

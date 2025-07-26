@@ -1,4 +1,4 @@
-node_modules/
 .env
 api-key.txt
 api/completions.php
+node_modules/

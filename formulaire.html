@@ -1,9 +1,32 @@
-<form id="galetForm">
-  <input type="text" name="nom" placeholder="Nom du galet">
-  <input type="text" name="couleur" placeholder="Couleur">
-  <input type="text" name="forme" placeholder="Forme">
-  <input type="text" name="localisation" placeholder="Localisation">
-  <textarea name="description" placeholder="Description manuelle (ou cliquez pour IA)"></textarea>
-  <input type="file" name="image">
-  <button type="submit">Ajouter</button>
-</form>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajouter un galet</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Ajouter une fiche de galet</h1>
+  <form action="api/enregistrer.php" method="POST" enctype="multipart/form-data">
+    <label>Nom du galet : <input type="text" name="nom" required></label><br>
+    <label>Description : <textarea name="description" required></textarea></label><br>
+    <label>Type de roche :
+      <select name="roche_type">
+        <option value="magmatique">Magmatique</option>
+        <option value="métamorphique">Métamorphique</option>
+        <option value="sédimentaire">Sédimentaire</option>
+        <option value="">Autre / inconnu</option>
+      </select>
+    </label><br>
+    <label>Hypothèses (séparées par virgules) : <input type="text" name="hypotheses"></label><br>
+    <label>Minéraux probables (séparés par virgules) : <input type="text" name="mineraux_probables"></label><br>
+    <label>Origine possible : <input type="text" name="origine_possible"></label><br>
+    <label>Lieu (nom de lieu) : <input type="text" name="lieu"></label><br>
+    <label>Latitude : <input type="number" step="any" name="lat"></label><br>
+    <label>Longitude : <input type="number" step="any" name="lon"></label><br>
+    <label>Tests effectués (séparés par virgules) : <input type="text" name="tests_effectues"></label><br>
+    <label>Photo du galet : <input type="file" name="photo" accept="image/*"></label><br><br>
+    <button type="submit">Enregistrer</button>
+  </form>
+</body>
+</html>

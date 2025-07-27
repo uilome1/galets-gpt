@@ -3,11 +3,26 @@
 <head>
   <meta charset="UTF-8">
   <title>Galerie de Galets</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .fiche {
+      border: 1px solid #ccc;
+      padding: 1em;
+      margin: 1em;
+      border-radius: 8px;
+      max-width: 600px;
+    }
+    .fiche img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+  </style>
 </head>
 <body>
-  <h1>Mes Galets</h1>
-  <div id="galerie"></div>
-  <script src="js/main.js"></script>
+  <h1>Galerie de Galets</h1>
+  <div id="liste-galets"></div>
+
+  <script src="js/main.js" defer></script>
 </body>
 </html>

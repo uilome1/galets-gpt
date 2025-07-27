@@ -51,5 +51,31 @@
         "tests_effectues": [
             ""
         ]
+    },
+    {
+        "id": "galet_68862b6a761b9",
+        "photo": "img\/galet_68862b6a75ebd.jpg",
+        "nom": "Galet de plage",
+        "description": "Strates déformées : ancienne roche métamorphique",
+        "roche_type": "métamorphique",
+        "hypotheses": [
+            "Gneiss ou quartzite à feldspaths oxydés"
+        ],
+        "mineraux_probables": [
+            "Gneiss",
+            "quartzite",
+            "feldspaths"
+        ],
+        "origine_possible": "rivière",
+        "localisation": {
+            "lieu": "Toulon",
+            "coordonnees": {
+                "lat": 0,
+                "lon": 0
+            }
+        },
+        "tests_effectues": [
+            ""
+        ]
     }
 ]

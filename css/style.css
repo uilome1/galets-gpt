@@ -100,3 +100,73 @@ form button {
 form button:hover {
   background-color: #1b5e20;
 }
+
+.navbar {
+  display: flex;
+  justify-content: flex-start;
+  background-color: #333;
+  padding: 1em;
+}
+
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 2em;
+  font-weight: bold;
+  transition: opacity 0.3s;
+}
+
+.navbar a:hover {
+  opacity: 0.7;
+}
+/* Disposition principale en deux colonnes */
+.contenu {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+/* Galerie de fiches */
+#galerie {
+  flex: 3;
+}
+
+/* Glossaire latéral */
+#glossaire {
+  flex: 1;
+  background-color: #f8f8f8;
+  border-left: 2px solid #ddd;
+  padding: 1rem;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+#glossaire h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+#glossaire ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+#glossaire li {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  color: #333;
+}
+
+/* Responsive : le glossaire passe sous la galerie */
+@media (max-width: 768px) {
+  .contenu {
+    flex-direction: column;
+  }
+
+  #glossaire {
+    border-left: none;
+    border-top: 2px solid #ddd;
+  }
+}
+

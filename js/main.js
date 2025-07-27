@@ -1,7 +1,7 @@
 fetch('fiches.json')
   .then(response => response.json())
   .then(data => {
-    const container = document.getElementById('liste-galets');
+    const container = document.getElementById('galerie');
     if (!container) return;
 
     data.forEach(fiche => {

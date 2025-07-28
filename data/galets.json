@@ -1,0 +1,100 @@
+[
+    {
+        "id": "galet_6886263ee7fcd",
+        "photo": "img\/galet_6886263ee69ac.jpg",
+        "nom": "Galet poli de15h",
+        "description": "blanc avec tâches brunes",
+        "roche_type": "magmatique",
+        "hypotheses": [
+            "rafaae"
+        ],
+        "mineraux_probables": [
+            "eaaer"
+        ],
+        "origine_possible": "rivière",
+        "localisation": {
+            "lieu": "Nice",
+            "coordonnees": {
+                "lat": 0,
+                "lon": 0
+            }
+        },
+        "tests_effectues": [
+            ""
+        ],
+        "hypothese": "Non défini",
+        "origine": "Non défini"
+    },
+    {
+        "id": "galet_68862b6a761b9",
+        "photo": "img\/galet_68862b6a75ebd.jpg",
+        "nom": "Galet de plage",
+        "description": "Strates déformées : ancienne roche métamorphique",
+        "roche_type": "métamorphique",
+        "hypotheses": [
+            "Gneiss ou quartzite à feldspaths oxydés"
+        ],
+        "mineraux_probables": [
+            "Gneiss",
+            "quartzite",
+            "feldspaths"
+        ],
+        "origine_possible": "rivière",
+        "localisation": {
+            "lieu": "Toulon",
+            "coordonnees": {
+                "lat": 0,
+                "lon": 0
+            }
+        },
+        "tests_effectues": [
+            ""
+        ],
+        "hypothese": "Non défini",
+        "origine": "Non défini"
+    },
+    {
+        "id": "galet_68868394ad86d",
+        "photo": "assets\/images\/galet_68868394ad5b5.jpg",
+        "lieu": "Nice",
+        "taille": 5,
+        "couleurs": "gris",
+        "motifs": "stries",
+        "texture": "grenue",
+        "brillance": "mat",
+        "tests_effectues": [
+            "Non réaction à l'acide",
+            "Surface légèrement rayable"
+        ],
+        "hypothese": "Non défini",
+        "origine": "Non défini"
+    },
+    {
+        "id": "galet_68879cf2a3037",
+        "photo": "assets\/images\/galet_68879cf2a2e7a.jpg",
+        "lieu": "plage Eze",
+        "taille": 10,
+        "couleurs": "gris sombre",
+        "motifs": "",
+        "texture": "fine",
+        "brillance": "mat",
+        "tests_effectues": [
+            "rayable au couteau"
+        ],
+        "hypothese": "Non défini",
+        "origine": "Non défini"
+    },
+    {
+        "id": "galet_6887e3497c1c0",
+        "photo": "assets\/images\/galet_6887e3497bf58.jpg",
+        "lieu": "Porquerolles",
+        "taille": 7,
+        "couleurs": "gris vert",
+        "motifs": "tâches verdâtres claires",
+        "texture": "grenue",
+        "brillance": "mat",
+        "tests_effectues": [],
+        "hypothese": "Non défini",
+        "origine": "Non défini"
+    }
+]

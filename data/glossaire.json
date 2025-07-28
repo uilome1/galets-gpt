@@ -1,0 +1,98 @@
+[
+  {
+    "terme": "quartzite",
+    "definition": "Roche métamorphique issue de la transformation d’un grès riche en quartz. Très dure, elle a souvent un aspect lisse ou vitreux.",
+    "categorie": "roche métamorphique",
+    "liens": ["grès", "métamorphisme", "dureté", "texture"]
+  },
+  {
+    "terme": "Grès",
+    "definition": "Roche sédimentaire composée de grains de sable cimentés.",
+    "categorie": "Roche sédimentaire",
+    "liens": ["Quartzite", "Cimentation"]
+  },
+  {
+    "terme": "Granite",
+    "definition": "Roche magmatique plutonique à grains visibles, riche en quartz et feldspaths.",
+    "categorie": "Roche magmatique",
+    "liens": ["Gneiss", "Cristallisation"]
+  },
+  {
+    "terme": "Basalte",
+    "definition": "Roche magmatique volcanique sombre, issue d’une lave fluide.",
+    "categorie": "Roche magmatique",
+    "liens": ["Lave", "Refroidissement rapide"]
+  },
+  {
+    "terme": "Gneiss",
+    "definition": "Roche métamorphique dérivée du granite, à structure rubanée.",
+    "categorie": "Roche métamorphique",
+    "liens": ["Granite", "Métamorphisme"]
+  },
+  {
+    "terme": "Schiste",
+    "definition": "Roche métamorphique à feuilletage, issue de l'argile.",
+    "categorie": "Roche métamorphique",
+    "liens": ["Argile", "Foliation"]
+  },
+  {
+    "terme": "Calcaire",
+    "definition": "Roche sédimentaire composée de carbonate de calcium, réagit à l'acide.",
+    "categorie": "Roche sédimentaire",
+    "liens": ["Dolomie", "Fossiles"]
+  },
+  {
+    "terme": "Conglomérat",
+    "definition": "Roche sédimentaire formée de fragments arrondis cimentés.",
+    "categorie": "Roche sédimentaire",
+    "liens": ["Gravillons", "Cimentation"]
+  },
+  {
+    "terme": "Andésite",
+    "definition": "Roche volcanique intermédiaire, à texture fine ou porphyrique.",
+    "categorie": "Roche magmatique",
+    "liens": ["Basalte", "Volcan"]
+  },
+  {
+    "terme": "Pélite",
+    "definition": "Roche métamorphique dérivée d'une argile fine, souvent feuilletée.",
+    "categorie": "Roche métamorphique",
+    "liens": ["Argile", "Schiste"]
+  },
+  {
+    "terme": "texture",
+    "definition": "Aspect visuel ou tactile d’une roche, défini par la taille, la forme et la disposition des grains ou cristaux.",
+    "categorie": "propriété pétrographique",
+    "liens": ["brillance", "motif", "structure"]
+  },
+  {
+    "terme": "brillance",
+    "definition": "Capacité d'une roche à réfléchir la lumière ; elle peut être mate, soyeuse, nacrée ou vitreuse.",
+    "categorie": "propriété visuelle",
+    "liens": ["texture", "motif", "vitreux"]
+  },
+  {
+    "terme": "métamorphisme",
+    "definition": "Transformation d'une roche à l'état solide sous l'effet de la pression et/ou de la température.",
+    "categorie": "processus géologique",
+    "liens": ["quartzite", "schiste", "pression", "température"]
+  },
+  {
+    "terme": "origine",
+    "definition": "En pétrographie, désigne l’histoire géologique d’un galet : roche source, transport, agents d’érosion, etc.",
+    "categorie": "notion géologique",
+    "liens": ["transport", "altération", "type de roche"]
+  },
+  {
+    "terme": "hypothèse",
+    "definition": "Proposition interprétative fondée sur l’observation d’un galet, formulée avant validation par tests.",
+    "categorie": "démarche scientifique",
+    "liens": ["tests", "observation", "origine"]
+  },
+  {
+    "terme": "tests",
+    "definition": "Méthodes simples (acide, rayure, observation) permettant de vérifier la nature d’un galet.",
+    "categorie": "méthode d’analyse",
+    "liens": ["acide", "rayure", "hypothèse"]
+  }
+]

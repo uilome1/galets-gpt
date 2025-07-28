@@ -2,35 +2,62 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ajouter un galet</title>
+  <title>Ajouter un Galet</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <nav class="navbar">
-  <a href="index.html">🏠 Galerie</a>
-  <a href="formulaire.html">➕ Ajouter un galet</a>
-</nav>
-  <h1>Ajouter une fiche de galet</h1>
-  <form action="api/enregistrer.php" method="POST" enctype="multipart/form-data">
-    <label>Nom du galet : <input type="text" name="nom" required></label><br>
-    <label>Description : <textarea name="description" required></textarea></label><br>
-    <label>Type de roche :
-      <select name="roche_type">
-        <option value="magmatique">Magmatique</option>
-        <option value="métamorphique">Métamorphique</option>
-        <option value="sédimentaire">Sédimentaire</option>
-        <option value="">Autre / inconnu</option>
+  <nav class="navbar">
+    <a href="index.html">🏠 Galerie</a>
+    <a href="formulaire.html">➕ Ajouter un galet</a>
+  </nav>
+
+  <main class="contenu">
+    <h1>Observations d'un Galet</h1>
+    <form action="api/enregistrer.php" method="post" enctype="multipart/form-data">
+      
+      <label for="lieu">Lieu de collecte (nom ou coordonnées)</label>
+      <input type="text" name="lieu" id="lieu" required>
+
+      <label for="taille">Taille estimée (en cm)</label>
+      <input type="number" name="taille" id="taille" step="0.1" required>
+
+      <label for="couleurs">Couleurs observées</label>
+      <input type="text" name="couleurs" id="couleurs" placeholder="Ex: gris, beige, noir" required>
+
+      <label for="motifs">Répartition des couleurs / motifs visibles</label>
+      <input type="text" name="motifs" id="motifs" placeholder="Taches sombres, stries parallèles...">
+
+      <label for="texture">Texture</label>
+      <select name="texture" id="texture" required>
+        <option value="">-- Choisir --</option>
+        <option value="grenue">Grenue</option>
+        <option value="fine">Fine</option>
+        <option value="vitrée">Vitrée</option>
+        <option value="feuilletée">Feuilletée</option>
+        <option value="autre">Autre</option>
       </select>
-    </label><br>
-    <label>Hypothèses (séparées par virgules) : <input type="text" name="hypotheses"></label><br>
-    <label>Minéraux probables (séparés par virgules) : <input type="text" name="mineraux_probables"></label><br>
-    <label>Origine possible : <input type="text" name="origine_possible"></label><br>
-    <label>Lieu (nom de lieu) : <input type="text" name="lieu"></label><br>
-    <label>Latitude : <input type="number" step="any" name="lat"></label><br>
-    <label>Longitude : <input type="number" step="any" name="lon"></label><br>
-    <label>Tests effectués (séparés par virgules) : <input type="text" name="tests_effectues"></label><br>
-    <label>Photo du galet : <input type="file" name="photo" accept="image/*"></label><br><br>
-    <button type="submit">Enregistrer</button>
-  </form>
+
+      <label for="brillance">Brillance</label>
+      <select name="brillance" id="brillance" required>
+        <option value="">-- Choisir --</option>
+        <option value="mat">Mat</option>
+        <option value="satiné">Satiné</option>
+        <option value="brillant">Brillant</option>
+      </select>
+
+      <fieldset>
+        <legend>Tests effectués</legend>
+        <label><input type="checkbox" name="tests[]" value="rayable à l'ongle"> Rayable à l'ongle</label>
+        <label><input type="checkbox" name="tests[]" value="rayable au couteau"> Rayable au couteau</label>
+        <label><input type="checkbox" name="tests[]" value="réagit à l'acide"> Réagit à l'acide</label>
+        <label><input type="checkbox" name="tests[]" value="attire l'aimant"> Attire l'aimant</label>
+      </fieldset>
+
+      <label for="photo">Photo du galet</label>
+      <input type="file" name="photo" id="photo" accept="image/*" required>
+
+      <button type="submit">Enregistrer la fiche</button>
+    </form>
+  </main>
 </body>
 </html>

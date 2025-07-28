@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Glossaire des Galets</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #f9fafb;
+    }
+    .terme {
+      transition: transform 0.2s ease;
+    }
+    .terme:hover {
+      transform: scale(1.02);
+    }
+  </style>
+</head>
+<body class="font-sans">
+
+  <nav class="bg-gray-800 text-white p-4 flex justify-between items-center">
+    <h1 class="text-xl font-bold">🌍 Glossaire de la galerie des galets</h1>
+    <div>
+      <a href="index.html" class="mr-4 hover:underline">🔍 Fiches Galets</a>
+      <a href="glossaire.html" class="font-semibold underline">📚 Glossaire</a>
+    </div>
+  </nav>
+
+  <main class="p-6 max-w-4xl mx-auto">
+    <h2 class="text-2xl font-semibold mb-4">Termes et définitions</h2>
+    <label class="block mb-4">
+  <span class="text-gray-700">Filtrer par catégorie :</span>
+  <select id="filtre-categorie" class="mt-1 block w-full p-2 border border-gray-300 rounded">
+    <option value="">-- Toutes les catégories --</option>
+    <option value="Roche magmatique">Roche magmatique</option>
+    <option value="Roche sédimentaire">Roche sédimentaire</option>
+    <option value="Roche métamorphique">Roche métamorphique</option>
+  </select>
+</label>
+
+    <div id="glossaire" class="space-y-4">
+      <!-- Les termes du glossaire seront injectés ici -->
+    </div>
+  </main>
+
+<script>
+  let glossaireComplet = [];
+
+  async function chargerGlossaire() {
+    try {
+      const response = await fetch('data/glossaire.json');
+      glossaireComplet = await response.json();
+      afficherGlossaire(glossaireComplet);
+    } catch (error) {
+      document.getElementById('glossaire').innerHTML = `<p class="text-red-600">Erreur de chargement du glossaire.</p>`;
+      console.error('Erreur JSON :', error);
+    }
+  }
+
+  function afficherGlossaire(donnees) {
+    const container = document.getElementById('glossaire');
+    container.innerHTML = ''; // Réinitialise
+
+    donnees.forEach(item => {
+      const div = document.createElement('div');
+      div.className = "terme p-4 bg-white shadow rounded";
+
+      div.innerHTML = `
+        <h3 class="text-xl font-bold text-blue-700">${item.terme}</h3>
+        <p class="text-gray-800 mb-2">${item.definition}</p>
+        <p class="text-sm text-gray-600 italic">Catégorie : ${item.categorie}</p>
+        ${item.liens.length ? `<p class="text-sm text-gray-500">Liens : ${item.liens.join(', ')}</p>` : ''}
+      `;
+
+      container.appendChild(div);
+    });
+  }
+
+  document.getElementById('filtre-categorie').addEventListener('change', (e) => {
+    const selection = e.target.value;
+    if (selection === '') {
+      afficherGlossaire(glossaireComplet);
+    } else {
+      const filtres = glossaireComplet.filter(item => item.categorie === selection);
+      afficherGlossaire(filtres);
+    }
+  });
+
+  chargerGlossaire();
+</script>
+
+</body>
+</html>

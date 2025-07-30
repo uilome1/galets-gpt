@@ -1,96 +1,105 @@
-fetch('data/galets.json')
-  .then(response => response.json())
-  .then(data => {
-    afficherGalets(data);
-    genererGlossaire(data); // à ajouter plus tard
-  });
+// js/main.js
 
-function afficherGalets(donnees) {
-  const liste = document.getElementById('galerie');
-  liste.innerHTML = '';
+document.addEventListener('DOMContentLoaded', () => {
+    // Cible le nouveau conteneur pour la grille des galets
+    const galerieContainer = document.getElementById('galets-grid-container'); 
+    const filtreRoche = document.getElementById('filtre-roche');
 
-  donnees.forEach(galet => {
-    const div = document.createElement('div');
-    div.className = 'carte-galet';
-
-    const imageSrc = galet.photo;
-    const lieu = galet.lieu || (galet.localisation?.lieu ?? 'Lieu inconnu');
-    const description = galet.description || '';
-    const roche = galet.roche_type || '';
-    const texture = galet.texture || '';
-    const brillance = galet.brillance || '';
-    const couleurs = galet.couleurs || '';
-    const motifs = galet.motifs || '';
-    const taille = galet.taille ? `${galet.taille} cm` : '';
-    const tests = Array.isArray(galet.tests_effectues) ? galet.tests_effectues.join(', ') : '';
-    const hypothese = galet.hypothese || (Array.isArray(galet.hypotheses) ? galet.hypotheses.join(', ') : '');
-    const origine = galet.origine || galet.origine_possible || '';
-
-    div.innerHTML = `
-      <img src="${imageSrc}" alt="Photo du galet" />
-      <p><strong>Lieu :</strong> ${lieu}</p>
-      ${taille ? `<p><strong>Taille :</strong> ${taille}</p>` : ''}
-      ${description ? `<p><strong>Description :</strong> ${description}</p>` : ''}
-      ${roche ? `<p><strong>Type de roche :</strong> ${roche}</p>` : ''}
-      ${texture ? `<p><strong>Texture :</strong> ${texture}</p>` : ''}
-      ${brillance ? `<p><strong>Brillance :</strong> ${brillance}</p>` : ''}
-      ${couleurs ? `<p><strong>Couleurs :</strong> ${couleurs}</p>` : ''}
-      ${motifs ? `<p><strong>Motifs :</strong> ${motifs}</p>` : ''}
-      ${tests ? `<p><strong>Tests effectués :</strong> ${tests}</p>` : ''}
-      ${hypothese ? `<p class="ia-hypothese"><strong>Hypothèse :</strong> ${hypothese}</p>` : ''}
-      ${origine ? `<p class="ia-origine"><strong>Origine :</strong> ${origine}</p>` : ''}
-    `;
-
-    const boutonIA = document.createElement('button');
-    boutonIA.textContent = '✨ Générer par IA';
-    boutonIA.className = 'generer-ia';
-    boutonIA.onclick = () => {
-      boutonIA.textContent = '⏳ IA en cours...';
-      fetch('api/completions.php', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({ id: galet.id })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === 'success')  {
-            
-            
-          // Ajout ou mise à jour des paragraphes IA
-          let pHypothese = div.querySelector('.ia-hypothese');
-          let pOrigine = div.querySelector('.ia-origine');
-
-          if (!pHypothese) {
-            pHypothese = document.createElement('p');
-            pHypothese.className = 'ia-hypothese';
-            div.appendChild(pHypothese);
-          }
-
-          if (!pOrigine) {
-            pOrigine = document.createElement('p');
-            pOrigine.className = 'ia-origine';
-            div.appendChild(pOrigine);
-          }
-
-          pHypothese.innerHTML = `<strong>Hypothèse IA :</strong> ${data.data.hypothese}`;
-    pOrigine.innerHTML = `<strong>Origine IA :</strong> ${data.data.origine}`;
-    boutonIA.textContent = '✅ Complété !';
-        } else {
-          alert('Erreur IA : ' + data.message);
-          boutonIA.textContent = '✨ Générer par IA';
+    async function chargerGalets() {
+        try {
+            const response = await fetch('data/galets.json');
+            const galets = await response.json();
+            afficherGalets(galets);
+        } catch (error) {
+            console.error('Erreur de chargement des galets :', error);
+            galerieContainer.innerHTML = '<p>Impossible de charger la galerie de galets.</p>';
         }
-      })
-      .catch(err => {
-        console.error(err);
-        alert('Erreur de réseau ou de script');
-        boutonIA.textContent = '✨ Générer par IA';
-      });
-    };
+    }
 
-    div.appendChild(boutonIA);
-    liste.appendChild(div);
-  });
-}
+    function afficherGalets(galets) {
+        galerieContainer.innerHTML = ''; // Vide le conteneur avant d'ajouter les nouveaux galets
+        galets.forEach(galet => {
+            const ficheDiv = document.createElement('div');
+            ficheDiv.className = 'fiche'; // Applique la classe .fiche
+
+            // --- Normalisation du chemin d'image et vérification ---
+            let imageUrl = '';
+            if (galet.photo) {
+                // Remplace les antislashs par des slashs et s'assure qu'il n'y a pas de double "assets/"
+                imageUrl = galet.photo.replace(/\\/g, '/');
+                if (imageUrl.startsWith('assets/images/') || imageUrl.startsWith('assets/img/')) {
+                    // Chemin déjà correct
+                } else if (imageUrl.startsWith('images/') || imageUrl.startsWith('img/')) {
+                    // Ajoute "assets/" si manquant
+                    imageUrl = 'assets/' + imageUrl;
+                } else {
+                    // Pour les anciens galets qui pourraient avoir "image": "images/galet001.jpg"
+                    if (galet.image) {
+                        imageUrl = 'assets/' + galet.image.replace(/\\/g, '/');
+                    } else {
+                        imageUrl = ''; // Pas de chemin valide
+                    }
+                }
+            } else if (galet.image) { // Gère l'ancien champ 'image'
+                 imageUrl = 'assets/' + galet.image.replace(/\\/g, '/');
+            }
+
+            const imageHtml = imageUrl ? `<img src="${imageUrl}" alt="Image du galet ${galet.id}">` : '<p>Pas d\'image disponible</p>';
+
+            // --- Extraction et affichage des données avec gestion des absents ---
+            const nomGalet = galet.nom || `Galet #${galet.id}`; // Utilise 'nom' s'il existe, sinon l'ID
+            const lieu = galet.lieu || (galet.localisation && galet.localisation.lieu) || 'Non défini';
+            const rocheType = galet.roche_type || galet.type || 'Non défini'; // Gère 'roche_type' ou 'type'
+            const taille = galet.taille ? `${galet.taille} cm` : 'Non défini';
+            const couleurs = galet.couleurs && Array.isArray(galet.couleurs) ? galet.couleurs.join(', ') : galet.couleurs || 'Non défini';
+            const motifs = galet.motifs && Array.isArray(galet.motifs) ? galet.motifs.join(', ') : galet.motifs || 'Non défini';
+            const texture = galet.texture || 'Non défini';
+            const brillance = galet.brillance || 'Non défini';
+            const testsEffectues = galet.tests_effectues && Array.isArray(galet.tests_effectues) && galet.tests_effectues.length > 0
+                                ? galet.tests_effectues.filter(t => t).join(', ')
+                                : 'Aucun';
+            const motsClesGlossaire = galet.mots_cles_glossaire && Array.isArray(galet.mots_cles_glossaire) && galet.mots_cles_glossaire.length > 0
+                                    ? galet.mots_cles_glossaire.join(', ')
+                                    : 'Aucun';
 
 
+            ficheDiv.innerHTML = `
+                ${imageHtml}
+                <h3>${nomGalet}</h3>
+                <p><strong>Lieu :</strong> ${lieu}</p>
+                <p><strong>Type de roche :</strong> ${rocheType}</p>
+                <p><strong>Taille :</strong> ${taille}</p>
+                <p><strong>Couleurs :</strong> ${couleurs}</p>
+                <p><strong>Motifs :</strong> ${motifs}</p>
+                <p><strong>Texture :</strong> ${texture}</p>
+                <p><strong>Brillance :</strong> ${brillance}</p>
+                <p><strong>Tests effectués :</strong> ${testsEffectues}</p>
+                ${galet.description ? `<p><strong>Description :</strong> ${galet.description}</p>` : ''}
+                ${galet.hypothese ? `<p><strong>Hypothèse :</strong> ${galet.hypothese}</p>` : ''}
+                ${galet.origine ? `<p><strong>Origine :</strong> ${galet.origine}</p>` : ''}
+                <p><strong>Mots-clés :</strong> ${motsClesGlossaire}</p>
+            `;
+            galerieContainer.appendChild(ficheDiv);
+        });
+    }
 
+    filtreRoche.addEventListener('change', async (event) => {
+        const typeSelectionne = event.target.value;
+        try {
+            const response = await fetch('data/galets.json');
+            const galets = await response.json();
+            const galetsFiltres = typeSelectionne
+                ? galets.filter(galet => {
+                    const typeGalet = galet.roche_type || galet.type; // Gère les deux noms de champ
+                    return typeGalet && typeGalet.toLowerCase() === typeSelectionne.toLowerCase();
+                })
+                : galets;
+            afficherGalets(galetsFiltres);
+        } catch (error) {
+            console.error('Erreur de filtrage des galets :', error);
+        }
+    });
+
+    // Charger les galets au chargement initial de la page
+    chargerGalets();
+});

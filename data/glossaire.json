@@ -1,9 +1,15 @@
 [
-  {
+   {
+    "terme": "quartz",
+    "definition": "Roche métamorphique issue de la transformation d’un grès riche en quartz. Très dure, elle a souvent un aspect lisse ou vitreux.",
+    "categorie": "roche métamorphique",
+    "liens": ["métamorphisme", "dureté"]
+  },
+    {
     "terme": "quartzite",
     "definition": "Roche métamorphique issue de la transformation d’un grès riche en quartz. Très dure, elle a souvent un aspect lisse ou vitreux.",
     "categorie": "roche métamorphique",
-    "liens": ["grès", "métamorphisme", "dureté", "texture"]
+    "liens": ["métamorphisme", "dureté", "texture"]
   },
   {
     "terme": "Grès",

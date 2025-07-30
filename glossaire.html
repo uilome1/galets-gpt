@@ -15,6 +15,12 @@
     .terme:hover {
       transform: scale(1.02);
     }
+     @media (min-width: 1024px) {
+    #resultats-galets {
+      max-height: 80vh;
+      overflow-y: auto;
+    }
+  }
   </style>
 </head>
 <body class="font-sans">
@@ -27,22 +33,33 @@
     </div>
   </nav>
 
-  <main class="p-6 max-w-4xl mx-auto">
-    <h2 class="text-2xl font-semibold mb-4">Termes et définitions</h2>
-    <label class="block mb-4">
-  <span class="text-gray-700">Filtrer par catégorie :</span>
-  <select id="filtre-categorie" class="mt-1 block w-full p-2 border border-gray-300 rounded">
-    <option value="">-- Toutes les catégories --</option>
-    <option value="Roche magmatique">Roche magmatique</option>
-    <option value="Roche sédimentaire">Roche sédimentaire</option>
-    <option value="Roche métamorphique">Roche métamorphique</option>
-  </select>
-</label>
+  <main class="p-6 max-w-6xl mx-auto">
+  <h2 class="text-2xl font-semibold mb-4">Termes et définitions</h2>
 
-    <div id="glossaire" class="space-y-4">
-      <!-- Les termes du glossaire seront injectés ici -->
+  <div class="flex flex-col lg:flex-row gap-6">
+    <div class="w-full lg:w-1/2">
+      <label class="block mb-4">
+        <span class="text-gray-700">Filtrer par catégorie :</span>
+        <select id="filtre-categorie" class="mt-1 block w-full p-2 border border-gray-300 rounded">
+          <option value="">-- Toutes les catégories --</option>
+          <option value="Roche magmatique">Roche magmatique</option>
+          <option value="Roche sédimentaire">Roche sédimentaire</option>
+          <option value="Roche métamorphique">Roche métamorphique</option>
+        </select>
+      </label>
+
+      <div id="glossaire" class="space-y-4">
+        <!-- glossaire ici -->
+      </div>
     </div>
-  </main>
+
+    <!-- Galets associés -->
+    <div id="resultats-galets" class="w-full lg:w-1/2">
+      <!-- Les galets apparaîtront ici -->
+    </div>
+  </div>
+</main>
+
 
 <script>
   let glossaireComplet = [];
@@ -58,24 +75,70 @@
     }
   }
 
-  function afficherGlossaire(donnees) {
-    const container = document.getElementById('glossaire');
-    container.innerHTML = ''; // Réinitialise
+ function afficherGlossaire(donnees) {
+  const container = document.getElementById('glossaire');
+  container.innerHTML = '';
 
-    donnees.forEach(item => {
+  donnees.forEach(item => {
+    const div = document.createElement('div');
+    div.className = "terme p-4 bg-white shadow rounded";
+
+    div.innerHTML = `
+      <h3 class="text-xl font-bold text-blue-700 cursor-pointer hover:underline" onclick="rechercherGalets('${item.terme}')">${item.terme}</h3>
+      <p class="text-gray-800 mb-2">${item.definition}</p>
+      <p class="text-sm text-gray-600 italic">Catégorie : ${item.categorie}</p>
+      ${item.liens.length ? `<p class="text-sm text-gray-500">Liens : ${item.liens.join(', ')}</p>` : ''}
+    `;
+
+    container.appendChild(div);
+  });
+}
+
+async function rechercherGalets(terme) {
+  const section = document.getElementById('resultats-galets');
+  section.innerHTML = `<h2 class="text-xl font-semibold mb-4">Galets associés à "${terme}"</h2>`;
+
+  try {
+    const res = await fetch('data/galets.json');
+    const galets = await res.json();
+
+  const galetsAssocies = galets.filter(galet => {
+  // Si le galet a une liste de mots-clés
+  if (galet.mots_cles_glossaire) {
+    return galet.mots_cles_glossaire
+      .map(mot => mot.toLowerCase())
+      .includes(terme.toLowerCase());
+  }
+
+  // Sinon, fallback générique (concaténation)
+  return JSON.stringify(galet).toLowerCase().includes(terme.toLowerCase());
+});
+
+
+    const grid = document.createElement('div');
+    grid.className = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4";
+
+    galetsAssocies.forEach(galet => {
       const div = document.createElement('div');
-      div.className = "terme p-4 bg-white shadow rounded";
+      div.className = "bg-white p-4 rounded shadow";
 
       div.innerHTML = `
-        <h3 class="text-xl font-bold text-blue-700">${item.terme}</h3>
-        <p class="text-gray-800 mb-2">${item.definition}</p>
-        <p class="text-sm text-gray-600 italic">Catégorie : ${item.categorie}</p>
-        ${item.liens.length ? `<p class="text-sm text-gray-500">Liens : ${item.liens.join(', ')}</p>` : ''}
+        <img src="${galet.photo}" alt="galet" class="w-full h-40 object-cover rounded mb-2">
+        <p><strong>Lieu :</strong> ${galet.lieu || 'Non défini'}</p>
+        <p><strong>Type :</strong> ${galet.roche_type || 'Non défini'}</p>
+        <p><strong>Couleur :</strong> ${galet.couleurs || 'Non défini'}</p>
       `;
 
-      container.appendChild(div);
+      grid.appendChild(div);
     });
+
+    section.appendChild(grid);
+
+  } catch (error) {
+    section.innerHTML += `<p class="text-red-600">Erreur lors de la recherche des galets.</p>`;
+    console.error(error);
   }
+}
 
   document.getElementById('filtre-categorie').addEventListener('change', (e) => {
     const selection = e.target.value;

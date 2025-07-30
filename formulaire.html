@@ -45,6 +45,17 @@
         <option value="brillant">Brillant</option>
       </select>
 
+      <label for="roche_type_saisie">Type de Roche (Hypothèse)</label>
+      <select name="roche_type_saisie" id="roche_type_saisie" required>
+        <option value="">-- Choisir un type --</option>
+        <option value="Roche magmatique">Roche Magmatique</option>
+        <option value="Roche sédimentaire">Roche Sédimentaire</option>
+        <option value="Roche métamorphique">Roche Métamorphique</option>
+        </select>
+
+      <label for="mots_cles_additionnels">Mots-clés additionnels (séparés par des virgules)</label>
+      <input type="text" name="mots_cles_additionnels" id="mots_cles_additionnels" placeholder="Ex: quartz, feldspath, strié">
+
       <fieldset>
         <legend>Tests effectués</legend>
         <label><input type="checkbox" name="tests[]" value="rayable à l'ongle"> Rayable à l'ongle</label>

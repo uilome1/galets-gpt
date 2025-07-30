@@ -1,15 +1,20 @@
 [
     {
         "id": "galet_6886263ee7fcd",
-        "photo": "img\/galet_6886263ee69ac.jpg",
+        "photo": "assets\/images\/galet_6885e00666ed2.jpg",
         "nom": "Galet poli de15h",
         "description": "blanc avec tâches brunes",
         "roche_type": "magmatique",
         "hypotheses": [
-            "rafaae"
+            "quartz"
+        ],
+        "mots_cles_glossaire": [
+            "magmatique",
+            "quartz",
+            "poli"
         ],
         "mineraux_probables": [
-            "eaaer"
+            "quartz"
         ],
         "origine_possible": "rivière",
         "localisation": {
@@ -27,10 +32,11 @@
     },
     {
         "id": "galet_68862b6a761b9",
-        "photo": "img\/galet_68862b6a75ebd.jpg",
+        "photo": "assets\/images\/galet_6887e3497bf58.jpg",
         "nom": "Galet de plage",
         "description": "Strates déformées : ancienne roche métamorphique",
         "roche_type": "métamorphique",
+        "couleurs": "gris, vert",
         "hypotheses": [
             "Gneiss ou quartzite à feldspaths oxydés"
         ],
@@ -50,13 +56,20 @@
         "tests_effectues": [
             ""
         ],
-        "hypothese": "Non défini",
+        "mots_cles_glossaire": [
+            "métamorphique",
+            "feldspaths",
+            "gneiss",
+            "strates déformées"
+        ],
+        "hypothese": "granite",
         "origine": "Non défini"
     },
     {
         "id": "galet_68868394ad86d",
-        "photo": "assets\/images\/galet_68868394ad5b5.jpg",
+        "photo": "assets\/images\/galet_6889cf91beeb6.jpg",
         "lieu": "Nice",
+        "roche_type": "magmatique",
         "taille": 5,
         "couleurs": "gris",
         "motifs": "stries",
@@ -67,34 +80,135 @@
             "Surface légèrement rayable"
         ],
         "hypothese": "Non défini",
-        "origine": "Non défini"
+        "origine": "Non défini",
+        "mots_cles_glossaire": [
+            "beige",
+            "sédimentaire",
+            "grès"
+        ]
     },
     {
         "id": "galet_68879cf2a3037",
-        "photo": "assets\/images\/galet_68879cf2a2e7a.jpg",
+        "photo": "assets\/images\/galet_6889f59f07e29.jpg",
         "lieu": "plage Eze",
         "taille": 10,
-        "couleurs": "gris sombre",
+        "roche_type": "métamorphique",
+        "couleurs": "gris",
         "motifs": "",
         "texture": "fine",
         "brillance": "mat",
         "tests_effectues": [
             "rayable au couteau"
         ],
-        "hypothese": "Non défini",
-        "origine": "Non défini"
+        "hypothese": "Basalte",
+        "origine": "Non défini",
+        "mots_cles_glossaire": [
+            "gris sombre",
+            "schiste",
+            "mat"
+        ]
     },
     {
         "id": "galet_6887e3497c1c0",
-        "photo": "assets\/images\/galet_6887e3497bf58.jpg",
+        "photo": "assets\/images\/galet_68862b6a75ebd.jpg",
         "lieu": "Porquerolles",
+        "roche_type": "métamorphique",
         "taille": 7,
-        "couleurs": "gris vert",
-        "motifs": "tâches verdâtres claires",
+        "couleurs": "gris ocre",
+        "motifs": "tâches ocres",
         "texture": "grenue",
         "brillance": "mat",
         "tests_effectues": [],
         "hypothese": "Non défini",
-        "origine": "Non défini"
+        "origine": "Non défini",
+        "mots_cles_glossaire": [
+            "gris",
+            "ocre",
+            "Gneiss"
+        ]
+    },
+    {
+        "id": "galet_6889cf91c7429",
+        "photo": "assets\/images\/galet_68879cf2a2e7a.jpg",
+        "lieu": "Porquerolles",
+        "roche_type": "magmatique",
+        "taille": 8,
+        "couleurs": "ocre",
+        "motifs": "Fines tâches plus brune",
+        "texture": "grenue",
+        "brillance": "mat",
+        "tests_effectues": [],
+        "hypothese": "",
+        "origine": "",
+        "mots_cles_glossaire": [
+            "gris sombre",
+            "mat",
+            "Basalte"
+        ]
+    },
+    {
+        "id": "galet_688a6b5920243",
+        "photo": "assets\/images\/galet_688a6b591af0e.jpg",
+        "lieu": "Lerins",
+        "taille": 6,
+        "couleurs": "gris",
+        "motifs": "stries blanches",
+        "texture": "fine",
+        "brillance": "mat",
+        "tests_effectues": [
+            "rayable au couteau"
+        ],
+        "roche_type": "métamorphique",
+        "mots_cles_glossaire": [
+            "quartz",
+            "fine",
+            "mat",
+            "quartzite"
+        ],
+        "hypothese": "",
+        "origine": ""
+    },
+    {
+        "id": "galet_688a74c6e057a",
+        "photo": "assets\/images\/galet_688a74c6d7d68.jpg",
+        "lieu": "Cagnes",
+        "taille": 5,
+        "couleurs": "gris",
+        "motifs": "incrustations noires",
+        "texture": "grenue",
+        "brillance": "mat",
+        "tests_effectues": [],
+        "roche_type": "magmatique",
+        "mots_cles_glossaire": [
+            "roche magmatique",
+            "grenue",
+            "mat",
+            "30",
+            "plat",
+            "granite"
+        ],
+        "hypothese": "",
+        "origine": ""
+    },
+    {
+        "id": "galet_688a7678164de",
+        "photo": "assets\/images\/galet_688a767816233.jpg",
+        "lieu": "plage Eze",
+        "taille": 7,
+        "couleurs": "gris",
+        "motifs": "",
+        "texture": "fine",
+        "brillance": "mat",
+        "tests_effectues": [],
+        "roche_type": "magmatique",
+        "mots_cles_glossaire": [
+            "roche magmatique",
+            "fine",
+            "mat",
+            "basalte",
+            "plat"
+        ],
+        "hypothese": "",
+        "origine": ""
     }
 ]

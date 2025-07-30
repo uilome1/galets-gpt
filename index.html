@@ -2,6 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Galerie de Galets</title>
   <link rel="stylesheet" href="css/style.css">
   <style>
@@ -10,7 +11,7 @@
       padding: 1em;
       margin: 1em;
       border-radius: 8px;
-      max-width: 600px;
+      max-width: 100%;
     }
     .fiche img {
       max-width: 100%;
@@ -27,8 +28,23 @@
   </nav>
 
   <main class="contenu">
+   <!-- filtres --> 
+   <section id="filtres">
+  <h2>Filtres</h2>
+  <label>Type de roche :
+    <select id="filtre-roche">
+      <option value="">--Tous--</option>
+      <option value="métamorphique">Métamorphique</option>
+      <option value="sédimentaire">Sédimentaire</option>
+      <option value="magmatique">Magmatique</option>
+    </select>
+  </label>
+</section>
+
     <section id="galerie">
       <h1>Galerie de Galets</h1>
+      <div id="galets-grid-container">
+        </div>
       <!-- Les galets seront injectés ici -->
     </section>
 
